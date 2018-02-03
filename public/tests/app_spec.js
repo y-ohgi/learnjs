@@ -21,5 +21,12 @@ describe('LearnJS', function() {
       expect(view.text()).toEqual('Problem #1 Coming soon!')
     });
   });
+
+  it('subscribes to the hash change event', function() {
+    learnjs.appOnReady();
+    spyOn(learnjs, 'showView');
+    $(window).trigger('hashchange');
+    expect(learnjs.showView).toHaveBeenCalledWith(window.location.hash);
+  });
 });
 
